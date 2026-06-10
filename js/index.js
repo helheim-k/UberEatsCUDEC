@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 function mostrarPlatillo(platillo, id) {
     let contenido = `
-    <div class="card-panel recipe white row" data-id="${id}">
+    <div class="card-panel recipe white row" id="${id}">
         <div class="recipe-details">
             <div class="recipe-title">
                 ${platillo.nombre}
