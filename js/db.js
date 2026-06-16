@@ -35,9 +35,11 @@ formularioAgregar.addEventListener("submit", (e) => {
 
 const platilloBorrar = document.querySelector(".recipes"); 
 platilloBorrar.addEventListener("click", (e) => {
-    
     if (e.target.tagName === "I") {
         const id = e.target.getAttribute("data-id");
-        db.collection("platillos").doc(id).delete();
+
+        if (confirm("¿Estás seguro de que deseas borrar este platillo?")) {
+            db.collection("platillos").doc(id).delete();
+        }
     }
 });
