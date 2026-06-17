@@ -12,62 +12,55 @@
 </head>
 <body class="grey lighten-4">
 
-  <!-- Menu superior -->
+  <!-- top nav -->
   <nav class="z-depth-0">
     <div class="nav-wrapper container">
-      <a href="/">ElBarrigon</span></a>
+      <a href="/">El<span>Barrigon</span></a>
       <span class="right grey-text text-darken-1">
         <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
       </span>
     </div>
   </nav>
 
-  <!-- Menu lateral -->
+  <!-- side nav -->
   <ul id="side-menu" class="sidenav side-menu">
-    <li><a class="subheader">ElBarrigon</a></li>
-    <li><a href="/" class="waves-effect">Inicio</a></li>
-    <li><a href="/pages/pedidos.html" class="waves-effect">Pedidos</a></li>
-    <li><a href="/pages/about.html" class="waves-effect">Acerca</a></li>
+    <li><a class="subheader">ELBARRIGON</a></li>
+    <li><a href="/" class="waves-effect">Home</a></li>
+    <li><a href="/pages/about.html" class="waves-effect">About</a></li>
     <li><div class="divider"></div></li>
     <li><a href="/pages/contact.html" class="waves-effect">
-      <i class="material-icons">mail_outline</i>Contacto</a>
+      <i class="material-icons">mail_outline</i>Contact</a>
     </li>
   </ul>
 
-  <!-- Lista de platillos -->
-  <div class="recipes container grey-text text-darken-1">
-    
+  <!-- content -->
+  <div class="container grey-text">
+        <label>Pedidos</label><br>
+
+        <label for="ListaPlatillos">Platillo</label><br>
+        <select id="ListaPlatillos" name="ListaPlatillos">
+        <option value="" selected>Selecciona un platillo</option>
+        </select>
+
+        <br><br>
+
+        <label for="nombre">Nombre</label><br>
+        <input type="text" id="nombre" name="nombre" placeholder="Escribe aquí">
+
+        <br><br>
+
+        <label for="direccion">Direccion</label><br>
+        <input type="text" id="direccion" name="direccion" placeholder="Escribe aquí">
+
+        <br><br>
+
+        <button type="submit">Guardar</button>
+        <button type="reset">Cancelar</button>
   </div>
 
-  <div class="center">
-    <a class="btn-floating btn-small btn-large add-btn sidenav-trigger" data-target="side-form">
-      <i class="material-icons">add</i>
-    </a>
-  </div>
 
-  <!-- Agregar platillo -->
-  <div id="side-form" class="sidenav side-form">
-    <form class="add-recipe container section">
-      <h6 >Nuevo platillo</h6>
-      <div class="divider"></div>
-      <div class="input-field">
-        <input placeholder="ejemplo: Pizza" id="title" type="text" class="validate">
-        <label for="title">Nombre</label>
-      </div>
-      <div class="input-field">
-        <input placeholder="e.g. Tofu, mushroom, garlic" id="ingredients" type="text" class="validate">
-        <label for="ingredients">Ingredientes</label>
-      </div>
-       <div class="input-field">
-        <input placeholder="e.g. $50" id="price" type="text" class="validate">
-        <label for="price">Precio</label>
-      </div>
-      <div class="input-field center">
-        <button class="btn-small">Agregar</button>
-      </div>
-    </form>
-  </div>
 
+  
   <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js">
   </script>
   <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js">
@@ -88,7 +81,10 @@
   firebase.initializeApp(firebaseConfig);
   const db= firebase.firestore();
   </script>
+
+
   <script src="/js/index.js"></script>
   <script src="/js/db.js"></script>
+  <script src="/js/ui.js"></script>
 </body>
 </html>
