@@ -1,18 +1,21 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>ElBarrigon</title>
-  <!-- materialize icons, css & js -->
+
+  <!-- Materialize CSS -->
   <link type="text/css" href="/css/materialize.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link type="text/css" href="/css/styles.css" rel="stylesheet">
   <script type="text/javascript" src="/js/materialize.min.js"></script>
 </head>
+
 <body class="grey lighten-4">
 
-  <!-- top nav -->
+ <!-- top nav -->
   <nav class="z-depth-0">
     <div class="nav-wrapper container">
       <a href="/">El<span>Barrigon</span></a>
@@ -33,40 +36,70 @@
     </li>
   </ul>
 
-  <!-- content -->
-  <div class="container grey-text">
-        <label>Pedidos</label><br>
+  <!-- Contenido -->
+  <div class="container" style="margin-top:40px; max-width:650px;">
 
-        <label for="ListaPlatillos">Platillo</label><br>
-        <select id="ListaPlatillos" name="ListaPlatillos">
-        <option value="" selected>Selecciona un platillo</option>
-        </select>
+    <div class="card z-depth-3">
+      <div class="card-content">
 
-        <br><br>
+        <h4 class="center orange-text text-darken-2">
+          <i class="material-icons medium">restaurant_menu</i><br>
+          Pedido
+        </h4>
 
-        <label for="nombre">Nombre</label><br>
-        <input type="text" id="nombre" name="nombre" placeholder="Escribe aquí">
+        <div class="divider"></div>
 
-        <br><br>
+        <br>
 
-        <label for="direccion">Direccion</label><br>
-        <input type="text" id="direccion" name="direccion" placeholder="Escribe aquí">
+        <!-- Platillo -->
+        <div class="input-field">
+          <select id="ListaPlatillos" name="ListaPlatillos">
+            <option value="" disabled selected>Selecciona un platillo</option>
+          </select>
+          <label>Platillo</label>
+        </div>
 
-        <br><br>
+        <!-- Nombre -->
+        <div class="input-field">
+          <input type="text" id="nombre" name="nombre">
+          <label for="nombre">Nombre del cliente</label>
+        </div>
 
-        <button type="submit">Guardar</button>
-        <button type="reset">Cancelar</button>
+        <!-- Dirección -->
+        <div class="input-field">
+          <input type="text" id="direccion" name="direccion">
+          <label for="direccion">Dirección</label>
+        </div>
+
+        <br>
+
+        <!-- Botones -->
+        <div class="center">
+
+          <button id="guardar" type="submit"
+            class="btn waves-effect waves-light orange">
+            <i class="material-icons left">save</i>
+            Guardar
+          </button>
+
+          <button type="reset"
+            class="btn grey waves-effect waves-light"
+            style="margin-left:10px;">
+            <i class="material-icons left">close</i>
+            Cancelar
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js"></script>
 
-
-  
-  <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js">
-  </script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js">
-  </script>
-  
-  
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyBvAS1GpxpM144QaIH3ZOCfiYpuTxAXQFg",
@@ -77,14 +110,25 @@
       appId: "1:143172295006:web:2957703079c69a658797cf"
     };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db= firebase.firestore();
-  </script>
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // Inicializa el menú lateral
+      var sidenav = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(sidenav);
+
+      // Inicializa el select
+      var selects = document.querySelectorAll('select');
+      M.FormSelect.init(selects);
+
+    });
+  </script>
 
   <script src="/js/index.js"></script>
   <script src="/js/db.js"></script>
-  <script src="/js/ui.js"></script>
+
+
 </body>
 </html>
