@@ -40,9 +40,3 @@ const borrarPlatillo =(id) => {
     const platillo = document.querySelector(`.recipe[data-id=${id}]`);
     platillo.remove();
 }
-const agregarALista = (platillo, id) => {
-    contenidoLista = `
-    <option value="${id}">${platillo.nombre}</option>
-    `;
-    document.getElementById('ListaPlatillos').innerHTML += contenidoLista;
-}
