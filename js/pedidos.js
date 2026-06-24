@@ -1,7 +1,70 @@
+let contenidoLista = '';
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  // nav menu
+  const menus = document.querySelectorAll('.side-menu');
+  M.Sidenav.init(menus, { edge: 'right' });
+
+  // add recipe form
+  const forms = document.querySelectorAll('.side-form');
+  M.Sidenav.init(forms, { edge: 'left' });
+
+});
+
 db.collection("platillos").onSnapshot((coleccion) => {
+
+    contenidoLista = '<option value="" disabled selected>Selecciona un platillo</option>';
+
     coleccion.docChanges().forEach((registro) => {
+
         if (registro.type === "added") {
-            agregarALista(registro.doc.data(), registro.doc.id);   
+            agregarALista(registro.doc.data(), registro.doc.id);
         }
+
     });
+
+    var elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems);
+
+});
+
+function agregarALista(platillo, id) {
+
+    contenidoLista += `
+        <option value="${id}">
+            ${platillo.nombre}
+        </option>
+    `;
+
+    document.getElementById('ListaPlatillos').innerHTML = contenidoLista;
+}
+
+const formPedido = document.querySelector("#form-pedido");
+
+formPedido.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const pedidoNuevo = {
+       
+        platillo: formPedido.ListaPlatillos.value,
+        nombrec: formPedido.nombre.value,
+        direccion: formPedido.direccion.value
+    };
+
+    db.collection("pedidos")
+        .add(pedidoNuevo)
+        .then(() => {
+            formPedido.reset();
+
+            const select = document.querySelector("#ListaPlatillos");
+            select.selectedIndex = 0;
+            M.FormSelect.init(select);
+
+            alert("Pedido agregado");
+        })
+        .catch((error) => {
+            console.error("Error al agregar pedido:", error);
+            alert("Error al agregar pedido");
+        });
 });

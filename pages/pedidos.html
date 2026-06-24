@@ -1,95 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ElBarrigon</title>
+  <title>ElBarrigon - Pedidos</title>
 
-  <!-- Materialize CSS -->
-  <link type="text/css" href="/css/materialize.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" href="/css/styles.css" rel="stylesheet">
-  <script type="text/javascript" src="/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script src="/js/materialize.min.js"></script>
 </head>
 
 <body class="grey lighten-4">
 
- <!-- top nav -->
+  <!-- Menu superior -->
   <nav class="z-depth-0">
     <div class="nav-wrapper container">
-      <a href="/">El<span>Barrigon</span></a>
+      <a href="/">ElBarrigon</a>
       <span class="right grey-text text-darken-1">
         <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
       </span>
     </div>
   </nav>
 
-  <!-- side nav -->
+  <!-- Menu lateral -->
   <ul id="side-menu" class="sidenav side-menu">
-    <li><a class="subheader">ELBARRIGON</a></li>
-    <li><a href="/" class="waves-effect">Home</a></li>
-    <li><a href="/pages/about.html" class="waves-effect">About</a></li>
+    <li><a class="subheader">ElBarrigon</a></li>
+    <li><a href="/" class="waves-effect">Inicio</a></li>
+    <li><a href="/pages/pedidos.html" class="waves-effect">Pedidos</a></li>
+    <li><a href="/pages/about.html" class="waves-effect">Acerca</a></li>
     <li><div class="divider"></div></li>
-    <li><a href="/pages/contact.html" class="waves-effect">
-      <i class="material-icons">mail_outline</i>Contact</a>
+    <li>
+      <a href="/pages/contact.html" class="waves-effect">
+        <i class="material-icons">mail_outline</i>Contacto
+      </a>
     </li>
   </ul>
 
-  <!-- Contenido -->
+  <!-- FORMULARIO -->
   <div class="container" style="margin-top:40px; max-width:650px;">
 
-    <div class="card z-depth-3">
+    <div class="card">
       <div class="card-content">
 
-        <h4 class="center orange-text text-darken-2">
-          <i class="material-icons medium">restaurant_menu</i><br>
-          Pedido
-        </h4>
+        <span class="card-title center">Nuevo Pedido</span>
 
         <div class="divider"></div>
-
         <br>
+        <form id="form-pedido">
 
-        <!-- Platillo -->
-        <div class="input-field">
-          <select id="ListaPlatillos" name="ListaPlatillos">
-            <option value="" disabled selected>Selecciona un platillo</option>
-          </select>
-          <label>Platillo</label>
-        </div>
+          <div class="input-field">
+            <select id="ListaPlatillos">
+              <option value="" disabled selected>Selecciona un platillo</option>
+            </select>
+            <label>Platillo</label>
+          </div>
 
-        <!-- Nombre -->
-        <div class="input-field">
-          <input type="text" id="nombre" name="nombre">
-          <label for="nombre">Nombre del cliente</label>
-        </div>
+          <div class="input-field">
+            <input id="nombre" type="text" required>
+            <label for="nombre">Nombre del cliente</label>
+          </div>
 
-        <!-- Dirección -->
-        <div class="input-field">
-          <input type="text" id="direccion" name="direccion">
-          <label for="direccion">Dirección</label>
-        </div>
+          <div class="input-field">
+            <input id="direccion" type="text" required>
+            <label for="direccion">Dirección</label>
+          </div>
 
-        <br>
+          <div class="input-field center">
+            <button type="submit" class="btn-small">
+              Guardar Pedido
+            </button>
+          </div>
 
-        <!-- Botones -->
-        <div class="center">
-
-          <button id="guardar" type="submit"
-            class="btn waves-effect waves-light orange">
-            <i class="material-icons left">save</i>
-            Guardar
-          </button>
-
-          <button type="reset"
-            class="btn grey waves-effect waves-light"
-            style="margin-left:10px;">
-            <i class="material-icons left">close</i>
-            Cancelar
-          </button>
-
-        </div>
+        </form>
 
       </div>
     </div>
@@ -100,31 +84,6 @@
   <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js"></script>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyBvAS1GpxpM144QaIH3ZOCfiYpuTxAXQFg",
-      authDomain: "elbarrigon.firebaseapp.com",
-      projectId: "elbarrigon",
-      storageBucket: "elbarrigon.firebasestorage.app",
-      messagingSenderId: "143172295006",
-      appId: "1:143172295006:web:2957703079c69a658797cf"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    document.addEventListener('DOMContentLoaded', function () {
-
-      // Inicializa el menú lateral
-      var sidenav = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(sidenav);
-
-      // Inicializa el select
-      var selects = document.querySelectorAll('select');
-      M.FormSelect.init(selects);
-
-    });
-  </script>
   <script src="/js/firebase.js"></script>
   <script src="/js/pedidos.js"></script>
 
