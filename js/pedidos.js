@@ -68,3 +68,32 @@ formPedido.addEventListener("submit", (e) => {
             alert("Error al agregar pedido");
         });
 });
+
+M.AutoInit();
+document.getElementById("obtenerUbicacion").addEventListener("click", function () {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(exito, error);
+    }
+    else {
+        alert("La geolocalización no es compatible con este navegador.");
+    }
+});
+
+function exito(posicion){
+    let latitud = posicion.coords.latitude;
+    let longitud = posicion.coords.longitude;
+    fetch(`https://nominatim.openstreetmap.org/reverse?lat${latitud}&lon=${longitud}&format=json`,{
+        headers: {
+            'User-Agent': 'UberEatsCUDECHelheim-k (helheimkika@hotmail.com)'
+        }
+    })
+    .then(resuesta => respuesta.json())
+    .then(data => alert(data.display_name))
+    .catch(error => console.error(error));
+}
+
+
+function error(){
+    alert("No se pudo obtener la ubicación.");
+    console.log(error);
+}
