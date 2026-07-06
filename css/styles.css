@@ -1,75 +1,55 @@
-/* colours */
-:root{
-  --primary: #FFE9D2;
-  --secondary: #FFE1C4;
-  --title: #FF8816;
-}
 
-/* layout styles */
-nav{
-  background: var(--primary);
-  border-bottom: 10px solid var(--secondary);
-}
-nav a{
-  text-transform: uppercase;
-  color: var(--title);
-}
-nav a span{
-  font-weight: bold;
-}
-nav .sidenav-trigger{
+html, body{
   margin: 0;
+  padding: 0;
+  background: #FFF3E0;
 }
 
-/* recipe styles */
-.recipes{
-  margin-top: 20px;
+
+nav{
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(90deg, #FF9800, #FFD54F) !important;
+  border-bottom: 4px solid #FF5252;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-.card-panel.recipe{
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0px 1px 3px rgba(90,90,90,0.1);
-  display: grid;
-  grid-template-columns: 2fr 6fr 1fr;
-  grid-template-areas: "image details delete";
-  position: relative;
+
+.nav-wrapper{
+  padding: 0 15px;
 }
-.recipe img{
-  grid-area: image;
-  max-width: 60px;
-}
-.recipe-details{
-  grid-area: details;
-  margin-top: 6px;
-}
-.recipe-delete{
-  grid-area: delete;
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-}
-.recipe-delete i{
-  font-size: 18px;
-}
-.recipe-title{
+
+
+nav a, nav i{
+  color: #fff !important;
   font-weight: bold;
 }
-.recipe-ingredients{
-  font-size: 0.8em;
+
+
+.sidenav{
+  background: #fff;
 }
 
-/* form-styles */
-.add-btn{
-  background: var(--title) !important;
+.btn-floating{
+  background: #FF9800 !important;
 }
-input{
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
+
+.btn-floating i{
+  color: #fff !important;
 }
-.side-form button{
-  background: var(--title);
-  box-shadow: 1px 1px 3px rgba(90, 90, 90, 0.2);
+
+
+.btn-floating:hover{
+  background: #F57C00 !important;
 }
-form .input-field{
-  margin-top: 30px;
+
+
+.btn{
+  background: linear-gradient(90deg, #FF9800, #FF5252) !important;
+  border-radius: 10px;
+}
+
+
+.card-panel.recipe{
+  border-left: 5px solid #FF9800;
+  border-radius: 12px;
 }
