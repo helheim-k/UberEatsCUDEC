@@ -70,30 +70,34 @@ formPedido.addEventListener("submit", (e) => {
 });
 
 M.AutoInit();
+
 document.getElementById("obtenerUbicacion").addEventListener("click", function () {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(exito, error);
-    }
-    else {
+    } else {
         alert("La geolocalización no es compatible con este navegador.");
     }
 });
 
-function exito(posicion){
+function exito(posicion) {
     let latitud = posicion.coords.latitude;
     let longitud = posicion.coords.longitude;
-    fetch(`https://nominatim.openstreetmap.org/reverse?lat${latitud}&lon=${longitud}&format=json`,{
+
+    fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitud}&lon=${longitud}&format=json`, {
         headers: {
-            'User-Agent': 'UberEatsCUDECHelheim-k (helheimkika@hotmail.com)'
+            "User-Agent": "UberEatsCUDECHelheim-k (helheimkika@hotmail.com)"
         }
     })
-    .then(resuesta => respuesta.json())
-    .then(data => alert(data.display_name))
-    .catch(error => console.error(error));
+    .then(respuesta => respuesta.json())
+    .then(data => {
+        alert(data.display_name);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
 }
 
-
-function error(){
+function error(err) {
     alert("No se pudo obtener la ubicación.");
-    console.log(error);
+    console.error(err);
 }
