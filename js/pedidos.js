@@ -90,7 +90,9 @@ function exito(posicion) {
     })
     .then(respuesta => respuesta.json())
     .then(data => {
-        alert(data.display_name);
+        let ciudad = data.address.city;
+        let pais = data.address.country;
+        document.getElementById("direccion").value = `${ciudad}, ${pais}`;
     })
     .catch(error => {
         console.error("Error:", error);
