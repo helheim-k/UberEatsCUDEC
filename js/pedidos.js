@@ -93,6 +93,11 @@ function exito(posicion) {
         let ciudad = data.address.city;
         let pais = data.address.country;
         document.getElementById("direccion").value = `${ciudad}, ${pais}`;
+        var map = L.map('mapa').setView([latitud, longitud], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
     })
     .catch(error => {
         console.error("Error:", error);
