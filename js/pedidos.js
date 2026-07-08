@@ -98,6 +98,7 @@ function exito(posicion) {
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+        var marker = L.marker([latitud, longitud]).addTo(map);
     })
     .catch(error => {
         console.error("Error:", error);
