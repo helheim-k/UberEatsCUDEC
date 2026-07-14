@@ -81,3 +81,36 @@ btnFoto.addEventListener('click', function () {
             console.log(error);
         });
 })
+
+video.addEventListener('canplay', () => {
+    if (!streaming) {
+        height = video.videoHeight / (video.videoWidth / width);
+
+        video.setAttribute('width', width);
+        video.setAttribute('height', height);
+        canvas.setAttribute('width', width);
+        canvas.setAttribute('height', height);
+        streaming = true;
+    }
+})
+
+function tomarFoto() {
+    const contexto = canvas.getContext('2d');
+    if (width && height) {
+        canvas.width = width;
+        canvas.height = height;
+        contexto.drawImage(video, 0, 0, width, height);
+
+        const fotoFinal = canvas.toDataURL('image/png');
+        foto.setAttribute('src', fotoFinal);
+    }
+    else {
+        limpiarFoto();
+    }
+}
+
+function limpiarFoto() {
+    const contexto = canvas.getContext('2d');
+    contexto.fillStyle = "#74fd87";
+    contexto.fillRect(0, 0, canvas.width, canvas.height);
+}
