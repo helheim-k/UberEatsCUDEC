@@ -11,7 +11,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function mostrarPlatillo(platillo, id) {
-
+    let fotoPlatillo;
+    if (platillo.foto) {
+        fotoPlatillo = `<img src="${platillo.foto}" height="100px" width="100px">`;
+    } else {
+        fotoPlatillo = `<img src="img/no-image.png" height="100px" width="100px" alt="No hay foto">`;
+    }
     let contenido = `
     <div class="card-panel recipe white row" id="${id}" data-id="${id}">
         <div class="recipe-details">
@@ -27,6 +32,10 @@ function mostrarPlatillo(platillo, id) {
                 $${platillo.precio}
             </div>
 
+            <div class="recipe-image">
+                ${fotoPlatillo}
+            </div>
+        
             <div class="recipe-delete">
                 <i class="material-icons" data-id="${id}">
                     delete_outline
@@ -80,6 +89,7 @@ btnFoto.addEventListener('click', function () {
         .catch((error) => {
             console.log(error);
         });
+        tomarFoto();      
 })
 
 video.addEventListener('canplay', () => {
@@ -103,6 +113,7 @@ function tomarFoto() {
 
         const fotoFinal = canvas.toDataURL('image/png');
         foto.setAttribute('src', fotoFinal);
+        document.getElementById("foto").value = fotoFinal;
     }
     else {
         limpiarFoto();

@@ -18,7 +18,8 @@ formularioAgregar.addEventListener("submit", (e) => {
     const platilloNuevo = {
         nombre: formularioAgregar.title.value,
         ingredientes: formularioAgregar.ingredients.value,
-        precio: formularioAgregar.price.value
+        precio: formularioAgregar.price.value,
+        foto: formularioAgregar.foto.value
     }
     
     db.collection("platillos").add(platilloNuevo)
@@ -30,6 +31,7 @@ formularioAgregar.addEventListener("submit", (e) => {
     formularioAgregar.title.value = "";
     formularioAgregar.ingredients.value = "";
     formularioAgregar.price.value = "";
+    formularioAgregar.foto.value = "";
     alert("Platillo agregado");
 });
 
