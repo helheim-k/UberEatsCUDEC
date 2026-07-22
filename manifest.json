@@ -7,7 +7,7 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icon-16x16.png",
+      "src": "iconos/icon-16x16.png",
       "type": "image/png",
       "sizes": "16x16"
     },
@@ -67,12 +67,12 @@
       "sizes": "384x384"
     },
     {
-      "src": "icon-512x512.png",
+      "src": "iconos/icon-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "icon-512x512-maskable.png",
+      "src": "iconos/icon-512x512-maskable.png",
       "type": "image/png",
       "sizes": "512x512"
     }
