@@ -32,6 +32,9 @@ formularioAgregar.addEventListener("submit", (e) => {
     formularioAgregar.ingredients.value = "";
     formularioAgregar.price.value = "";
     formularioAgregar.foto.value = "";
+    document.getElementById("fotoPreview").src = "";
+    document.getElementById("video").style.display = "none";
+    streaming = false;
     alert("Platillo agregado");
 });
 
