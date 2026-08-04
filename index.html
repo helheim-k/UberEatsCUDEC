@@ -124,16 +124,24 @@
       <div id="camara"> 
         <video id="video">No hay video disponible</video>
       </div>
-      <canvas id="canvas"></canvas>
+      <canvas id="canvas" style="display: none;"></canvas>
+
       <div id="salida">
-        <img id="foto" src="" alt="Foto del platillo">
+         <img id="fotoPreview" src="" alt="Foto del platillo">
       </div>
 
+      <!-- ABRIR CÁMARA -->
+      <button type="button" id="btnCamara" class="btn waves-effect waves-light form-btn full-width">
+        Abrir cámara
+        <i class="material-icons right">camera_alt</i>
+      </button>
+
+      <!-- TOMAR FOTO -->
+      <button type="button" id="btnFoto" class="btn waves-effect waves-light form-btn full-width">
+        Tomar foto
+        <i class="material-icons right">camera_alt</i>
+      </button>
     </form>
-    <button id="btnFoto" class="btn waves-effect waves-light form-btn full-width">
-      Tomar foto
-      <i class="material-icons right">camera_alt</i>
-    </button>
   </div>
 
   <!-- FIREBASE -->

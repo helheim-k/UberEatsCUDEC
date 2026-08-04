@@ -74,9 +74,14 @@ let height = 0;
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const foto = document.getElementById('foto');
+const btnCamara = document.getElementById('btnCamara');
 const btnFoto = document.getElementById('btnFoto');
 
-btnFoto.addEventListener('click', function () {
+let stream = null;
+
+
+// ABRIR CÁMARA
+btnCamara.addEventListener('click', function () {
     navigator.mediaDevices
         .getUserMedia({ 
             video:{
@@ -85,18 +90,20 @@ btnFoto.addEventListener('click', function () {
                 }
             },
             audio: false
-
         })
-        .then((stream) => {
+        .then((cameraStream) => {
+            stream = cameraStream;
             video.srcObject = stream;
             video.play();
         })
         .catch((error) => {
             console.log(error);
         });
-        tomarFoto();      
-})
+        video.style.display = "block";
+});
 
+
+// CONFIGURAR VIDEO
 video.addEventListener('canplay', () => {
     if (!streaming) {
         height = video.videoHeight / (video.videoWidth / width);
@@ -105,20 +112,50 @@ video.addEventListener('canplay', () => {
         video.setAttribute('height', height);
         canvas.setAttribute('width', width);
         canvas.setAttribute('height', height);
+
         streaming = true;
     }
-})
+});
+
+
+// TOMAR FOTO
+btnFoto.addEventListener('click', function () {
+
+    if (!stream) {
+        alert("Primero abre la cámara");
+        return;
+    }
+
+    tomarFoto();
+
+});
 
 function tomarFoto() {
     const contexto = canvas.getContext('2d');
+
     if (width && height) {
         canvas.width = width;
         canvas.height = height;
+
         contexto.drawImage(video, 0, 0, width, height);
 
         const fotoFinal = canvas.toDataURL('image/png');
-        foto.setAttribute('src', fotoFinal);
-        document.getElementById("foto").value = fotoFinal;
+
+        // Mostrar la foto
+        document.getElementById("fotoPreview").src = fotoFinal;
+
+        // Guardar la foto temporalmente
+        foto.value = fotoFinal;
+
+        // APAGAR LA CÁMARA
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+            stream = null;
+        }
+
+        // Ocultar el video
+        video.srcObject = null;
+        video.style.display = "none";
     }
     else {
         limpiarFoto();
