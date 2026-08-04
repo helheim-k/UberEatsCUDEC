@@ -79,8 +79,13 @@ const btnFoto = document.getElementById('btnFoto');
 btnFoto.addEventListener('click', function () {
     navigator.mediaDevices
         .getUserMedia({ 
-            video: true, 
-            audio: false 
+            video:{
+                facingMode: {
+                    ideal: "environment"
+                }
+            },
+            audio: false
+
         })
         .then((stream) => {
             video.srcObject = stream;
