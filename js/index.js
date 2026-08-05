@@ -103,7 +103,7 @@ btnCamara.addEventListener('click', function () {
 });
 
 
-// CONFIGURAR VIDEO
+//CONFIGURAR VIDEO
 video.addEventListener('canplay', () => {
     if (!streaming) {
         height = video.videoHeight / (video.videoWidth / width);
@@ -118,7 +118,7 @@ video.addEventListener('canplay', () => {
 });
 
 
-// TOMAR FOTO
+//TOMAR FOTO
 btnFoto.addEventListener('click', function () {
 
     if (!stream) {
