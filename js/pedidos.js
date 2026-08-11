@@ -72,8 +72,7 @@ formPedido.addEventListener("submit", (e) => {
             const qrcode = new QRCode("qr", {
 
                 text: `Platillo: ${nombrePlatillo}
-                        Nombre: ${formPedido.nombre.value}
-                        Dirección: ${formPedido.direccion.value}`,
+                        Nombre: ${formPedido.nombre.value}`,
                 width: 128,
                 height: 128,
                 colorDark: "#000000",
