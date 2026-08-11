@@ -12,14 +12,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function mostrarPlatillo(platillo, id) {
     let fotoPlatillo;
+
     if (platillo.foto) {
-        fotoPlatillo = `<img src="${platillo.foto}" height="100px" width="100px">`;
+        fotoPlatillo = `<img src="${platillo.foto}" alt="Foto del platillo">`;
     } else {
-        fotoPlatillo = `<img src="img/no-image.png" height="100px" width="100px" alt="No hay foto">`;
+        fotoPlatillo = `<img src="img/no-image.png" alt="No hay foto">`;
     }
+
     let contenido = `
-    <div class="card-panel recipe white row" id="${id}" data-id="${id}">
+    <div class="card-panel recipe white" id="${id}" data-id="${id}">
+
+        <div class="recipe-image">
+            ${fotoPlatillo}
+        </div>
+
         <div class="recipe-details">
+
             <div class="recipe-title">
                 ${platillo.nombre}
             </div>
@@ -32,21 +40,21 @@ function mostrarPlatillo(platillo, id) {
                 $${platillo.precio}
             </div>
 
-            <div class="recipe-image">
-                ${fotoPlatillo}
-            </div>
-        
-            <div class="recipe-delete">
-                <i class="material-icons" data-id="${id}">
-                    delete_outline
-                </i>
-            </div>
         </div>
+
+        <div class="recipe-delete">
+            <i class="material-icons" data-id="${id}">
+                delete_outline
+            </i>
+        </div>
+
     </div>
     `;
 
     document.querySelector('.recipes').innerHTML += contenido;
 }
+
+
 
 function actualizarPlatillo(platillo, id) {
     const tarjeta = document.getElementById(id);

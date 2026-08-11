@@ -76,8 +76,6 @@ Las bibliotecas utilizadas se encuentran dentro del proyecto, incluyendo:
 ## 6. Estructura del proyecto
 La estructura principal del proyecto está organizada de la siguiente manera:
 
-```text
-
 UBEREATSCUDEC/
 │
 ├── css/
@@ -106,7 +104,7 @@ UBEREATSCUDEC/
 ├── manifest.json
 ├── sw.js
 └── README.md
-```
+
 
 ## 7. Evidencias
 
