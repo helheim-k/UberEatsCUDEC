@@ -111,28 +111,22 @@ UBEREATSCUDEC/
 A continuación se presentan las principales evidencias de funcionamiento de la aplicación.
 
 ### Inicio
-
-Evidencia de la pantalla principal de la aplicación, donde el usuario puede acceder a las funciones disponibles.
+evidencias/inicio.png
 
 ### Registrar platillo
-
-Evidencia de la sección utilizada para consultar y gestionar la información de los platillos disponibles.
+evidencias/agg.png
 
 ### Realizar pedido
+evidencias/pedidos.png
 
-Evidencia de la pantalla que permite seleccionar un platillo e ingresar los datos necesarios para realizar el pedido.
-
-### Pedido finalizado
-
-Evidencia de la pantalla mostrada después de realizar un pedido, incluyendo la generación del código QR correspondiente.
+### Pedido finalizado con qr
+evidencias/pedidosqr.png
 
 ### Acerca
-
-Evidencia de la sección que proporciona información general sobre la aplicación.
+evidencias/about.png
 
 ### Contacto
-
-Evidencia de la sección que proporciona información de contacto y soporte.
+evidencias/contact.png
 
 
 ## 8. Base de datos
