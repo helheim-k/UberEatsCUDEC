@@ -14,7 +14,7 @@ El Barrigon es una aplicación web progresiva (PWA) desarrollada para facilitar 
 El Barrigon es una Progressive Web App (PWA) orientada a la consulta de platillos y realización de pedidos de comida. La aplicación permite seleccionar un platillo, registrar los datos del cliente y generar un código QR con información del pedido.
 
 ## 2. Descripción del proyecto
-El Barrigon es una aplicación web desarrollada para facilitar el proceso de consulta y realización de pedidos de comida.
+El Barrigon es una aplicación PWA desarrollada para facilitar el proceso de consulta y realización de pedidos de comida.
 La aplicación permite a los usuarios consultar los platillos disponibles, seleccionar un platillo y registrar los datos necesarios para realizar un pedido, como el nombre del cliente y la dirección de entrega.
 El problema que busca resolver es facilitar y organizar el proceso de realizar pedidos de comida mediante una aplicación web accesible desde diferentes dispositivos.
 Los principales usuarios de la aplicación son clientes que desean consultar platillos y realizar pedidos de comida de una manera sencilla y rápida.
@@ -76,6 +76,7 @@ Las bibliotecas utilizadas se encuentran dentro del proyecto, incluyendo:
 ## 6. Estructura del proyecto
 La estructura principal del proyecto está organizada de la siguiente manera:
 
+```text
 UBEREATSCUDEC/
 │
 ├── css/
@@ -104,39 +105,35 @@ UBEREATSCUDEC/
 ├── manifest.json
 ├── sw.js
 └── README.md
-
+```
 
 ## 7. Evidencias
-
 A continuación se presentan las principales evidencias de funcionamiento de la aplicación.
-
 ### Inicio
-evidencias/inicio.png
+<img src="evidencias/inicio.png" height="400px" width="auto">
 
 ### Registrar platillo
-evidencias/agg.png
+<img src="evidencias/agg.png" height="400px" width="auto">
 
 ### Realizar pedido
-evidencias/pedidos.png
+<img src="evidencias/pedidos.png" height="400px" width="auto">
 
 ### Pedido finalizado con qr
-evidencias/pedidosqr.png
+<img src="evidencias/pedidosqr.png" height="400px" width="auto">
 
-### Acerca
-evidencias/about.png
+### Acerca de
+<img src="evidencias/about.png" height="400px" width="auto">
 
 ### Contacto
-evidencias/contact.png
+<img src="evidencias/contact.png" height="400px" width="auto">
 
 
 ## 8. Base de datos
 
 ### Motor utilizado
-
 La aplicación utiliza **Firebase Cloud Firestore** como motor de base de datos para almacenar y gestionar la información de los platillos y pedidos.
 
 ### Colecciones utilizadas
-
 La base de datos cuenta con dos colecciones principales:
 
 #### Colección `platillos`
