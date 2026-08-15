@@ -87,27 +87,92 @@ const btnFoto = document.getElementById('btnFoto');
 
 let stream = null;
 
+// Intenta encontrar la cámara trasera "normal", evitando la ultra gran angular
+async function obtenerDeviceIdCamaraTrasera() {
+    try {
+        const dispositivos = await navigator.mediaDevices.enumerateDevices();
+        const camaras = dispositivos.filter(d => d.kind === 'videoinput');
 
-// ABRIR CÁMARA
-btnCamara.addEventListener('click', function () {
+        // Descartamos las que digan "ultra" o "wide" (gran angular) en su nombre
+        const traseraNormal = camaras.find(c => {
+            const label = c.label.toLowerCase();
+            return (label.includes('back') || label.includes('trasera') || label.includes('rear'))
+                && !label.includes('ultra')
+                && !label.includes('wide')
+                && !label.includes('tele');
+        });
+
+        if (traseraNormal) return traseraNormal.deviceId;
+
+        // Si no encontramos una etiquetada claramente, tomamos cualquier trasera
+        const trasera = camaras.find(c => {
+            const label = c.label.toLowerCase();
+            return label.includes('back') || label.includes('trasera') || label.includes('rear');
+        });
+
+        return trasera ? trasera.deviceId : null;
+    } catch (error) {
+        console.log('No se pudo enumerar cámaras:', error);
+        return null;
+    }
+}
+
+// Si el navegador soporta zoom por hardware/software, aplica un ligero zoom
+// para compensar el efecto "todo se ve lejos" de la lente ultra gran angular
+function ajustarZoomSiEsPosible(mediaStream) {
+    const track = mediaStream.getVideoTracks()[0];
+    if (!track) return;
+
+    const capabilities = track.getCapabilities ? track.getCapabilities() : null;
+
+    if (capabilities && capabilities.zoom) {
+        const zoomDeseado = Math.min(
+            capabilities.zoom.max,
+            Math.max(capabilities.zoom.min, capabilities.zoom.min + (capabilities.zoom.max - capabilities.zoom.min) * 0.3)
+        );
+
+        track.applyConstraints({ advanced: [{ zoom: zoomDeseado }] })
+            .catch(err => console.log('No se pudo aplicar zoom:', err));
+    }
+}
+
+async function iniciarCamara() {
+    const deviceId = await obtenerDeviceIdCamaraTrasera();
+
+    const restricciones = deviceId
+        ? { video: { deviceId: { exact: deviceId } }, audio: false }
+        : { video: { facingMode: { ideal: "environment" } }, audio: false };
+
     navigator.mediaDevices
-        .getUserMedia({ 
-            video:{
-                facingMode: {
-                    ideal: "environment"
-                }
-            },
-            audio: false
-        })
+        .getUserMedia(restricciones)
         .then((cameraStream) => {
             stream = cameraStream;
             video.srcObject = stream;
             video.play();
+            ajustarZoomSiEsPosible(cameraStream);
         })
         .catch((error) => {
             console.log(error);
+            // Si falla con deviceId exacto, reintentamos con la configuración genérica
+            if (deviceId) {
+                navigator.mediaDevices
+                    .getUserMedia({ video: { facingMode: { ideal: "environment" } }, audio: false })
+                    .then((cameraStream) => {
+                        stream = cameraStream;
+                        video.srcObject = stream;
+                        video.play();
+                        ajustarZoomSiEsPosible(cameraStream);
+                    })
+                    .catch((err2) => console.log(err2));
+            }
         });
-        video.style.display = "block";
+
+    video.style.display = "block";
+}
+
+// ABRIR CÁMARA
+btnCamara.addEventListener('click', function () {
+    iniciarCamara();
 });
 
 
