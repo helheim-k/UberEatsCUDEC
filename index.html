@@ -9,6 +9,39 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link type="text/css" href="css/styles.css" rel="stylesheet">
 
+  <style>
+    #video {
+      display: none;
+    }
+
+    #camara {
+      margin-top: 10px;
+    }
+
+    #salida {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    #salida img {
+      max-width: 100%;
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #eee;
+      display: inline-block;
+    }
+
+    .add-recipe .form-btn {
+      margin-bottom: 12px;
+    }
+
+    .add-recipe .form-btn:last-of-type {
+      margin-top: 8px;
+    }
+  </style>
+
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <link rel="manifest" href="manifest.json">
 
@@ -117,18 +150,6 @@
         <label for="price">Precio</label>
       </div>
       <input id="foto" type="hidden" >
-      <button class="btn waves-effect waves-light form-btn full-width">
-        Agregar
-        <i class="material-icons right">add</i>
-      </button>
-      <div id="camara"> 
-        <video id="video">No hay video disponible</video>
-      </div>
-      <canvas id="canvas" style="display: none;"></canvas>
-
-      <div id="salida">
-         <img id="fotoPreview" src="" alt="Foto del platillo">
-      </div>
 
       <!-- ABRIR CÁMARA -->
       <button type="button" id="btnCamara" class="btn waves-effect waves-light form-btn full-width">
@@ -140,6 +161,21 @@
       <button type="button" id="btnFoto" class="btn waves-effect waves-light form-btn full-width">
         Tomar foto
         <i class="material-icons right">camera_alt</i>
+      </button>
+
+      <div id="camara"> 
+        <video id="video">No hay video disponible</video>
+      </div>
+      <canvas id="canvas" style="display: none;"></canvas>
+
+      <div id="salida">
+         <img id="fotoPreview" src="" alt="Foto del platillo">
+      </div>
+
+      <!-- AGREGAR-->
+      <button class="btn waves-effect waves-light form-btn full-width">
+        Agregar
+        <i class="material-icons right">add</i>
       </button>
     </form>
   </div>
